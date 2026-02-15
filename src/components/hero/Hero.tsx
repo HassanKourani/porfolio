@@ -34,8 +34,8 @@ export function Hero() {
           Hi, I'm
         </motion.p>
 
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-gradient">
-          <StaggeredText text={personal.name} baseDelay={0.4} />
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6">
+          <StaggeredText text={personal.name} baseDelay={0.4} gradient />
         </h1>
 
         <motion.div
