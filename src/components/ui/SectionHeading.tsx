@@ -1,4 +1,3 @@
-import { GradientText } from "./GradientText";
 import { ScrollReveal } from "./ScrollReveal";
 
 interface SectionHeadingProps {
@@ -8,22 +7,25 @@ interface SectionHeadingProps {
 
 export function SectionHeading({ title, subtitle }: SectionHeadingProps) {
   return (
-    <div className="text-center mb-16">
+    <div className="mb-16">
       <ScrollReveal>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          <GradientText>{title}</GradientText>
+        <div className="flex items-center gap-4 mb-4">
+          <div className="h-px flex-1 max-w-12 bg-accent/30" />
+          <span className="font-mono text-xs text-accent uppercase tracking-[0.2em]">
+            {title}
+          </span>
+        </div>
+        <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
+          {title}
         </h2>
       </ScrollReveal>
       {subtitle && (
         <ScrollReveal delay={100}>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="text-text-secondary text-lg mt-4 max-w-2xl">
             {subtitle}
           </p>
         </ScrollReveal>
       )}
-      <ScrollReveal variant="line" delay={200}>
-        <div className="w-20 h-0.5 bg-gradient-accent mx-auto mt-4 rounded-full" />
-      </ScrollReveal>
     </div>
   );
 }

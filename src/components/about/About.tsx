@@ -58,25 +58,37 @@ export function About() {
   return (
     <Section id="about">
       <SectionHeading
-        title="About Me"
-        subtitle="A quick overview of who I am and what I do"
+        title="About"
+        subtitle="A quick overview of who I am"
       />
 
-      <div className="grid md:grid-cols-2 gap-12 items-start">
-        <ScrollReveal variant="left">
-          <p className="text-text-secondary leading-relaxed text-lg">
-            {personal.bio}
-          </p>
+      <div className="grid lg:grid-cols-5 gap-8">
+        {/* Bio - takes 3 cols */}
+        <ScrollReveal className="lg:col-span-3">
+          <div className="p-8 rounded-2xl bg-bg-card border border-border-subtle h-full">
+            <p className="text-text-secondary leading-relaxed text-lg">
+              {personal.bio}
+            </p>
+            <div className="mt-6 flex items-center gap-3">
+              <div className="h-px flex-1 bg-border-subtle" />
+              <span className="font-mono text-xs text-accent/60">
+                Based in {personal.location.split("(")[0].trim()}
+              </span>
+            </div>
+          </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 gap-4">
+        {/* Stats bento - takes 2 cols */}
+        <div className="lg:col-span-2 grid grid-cols-2 gap-4">
           {personal.stats.map((stat, i) => (
             <ScrollReveal key={stat.label} delay={i * 100}>
-              <div className="p-6 rounded-xl bg-bg-card border border-border-subtle hover:border-accent-cyan/30 hover:-translate-y-1 transition-all duration-300 text-center glow-border">
-                <div className="text-3xl font-bold text-gradient mb-2">
+              <div className="p-6 rounded-2xl bg-bg-card border border-border-subtle hover:border-accent/20 transition-all duration-300 text-center card-glow cursor-default group">
+                <div className="font-heading text-4xl font-black text-accent mb-2">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-text-muted text-sm">{stat.label}</div>
+                <div className="text-text-muted text-sm font-mono uppercase tracking-wider">
+                  {stat.label}
+                </div>
               </div>
             </ScrollReveal>
           ))}

@@ -19,11 +19,11 @@ export function TechMarquee() {
         style={{
           width: "100%",
           overflow: "hidden",
-          borderTop: "1px solid #1e1e2e",
-          borderBottom: "1px solid #1e1e2e",
-          background: "rgba(18,18,26,0.3)",
+          borderTop: "1px solid #1E1E28",
+          borderBottom: "1px solid #1E1E28",
+          background: "rgba(17,17,22,0.5)",
           backdropFilter: "blur(8px)",
-          padding: "1.5rem 0",
+          padding: "1.25rem 0",
         }}
       >
         <div
@@ -31,7 +31,7 @@ export function TechMarquee() {
             display: "flex",
             width: "max-content",
             animationName: "marquee-scroll",
-            animationDuration: "30s",
+            animationDuration: "35s",
             animationTimingFunction: "linear",
             animationIterationCount: "infinite",
           }}
@@ -43,15 +43,17 @@ export function TechMarquee() {
               key={i}
               style={{
                 padding: "0 1.5rem",
-                fontSize: "0.9rem",
-                fontWeight: 500,
-                color: "#a1a1aa",
+                fontSize: "0.85rem",
+                fontFamily: "'Space Mono', monospace",
+                fontWeight: 400,
+                color: "#6B7280",
                 whiteSpace: "nowrap",
                 userSelect: "none",
+                letterSpacing: "0.02em",
               }}
             >
-              <span style={{ color: "rgba(0,212,255,0.5)", marginRight: "0.75rem" }}>
-                &#x2022;
+              <span style={{ color: "rgba(191,255,0,0.4)", marginRight: "0.75rem" }}>
+                /
               </span>
               {tech}
             </span>

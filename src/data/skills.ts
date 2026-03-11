@@ -19,9 +19,9 @@ export const skillCategories: SkillCategory[] = [
       { name: "JavaScript", level: "expert" },
       { name: "HTML5/CSS3", level: "expert" },
       { name: "Tailwind CSS", level: "expert" },
-      { name: "Redux", level: "advanced" },
+      { name: "Redux", level: "expert" },
       { name: "Ant Design", level: "expert" },
-      { name: "Shadcn/UI", level: "advanced" },
+      { name: "Shadcn/UI", level: "expert" },
     ],
   },
   {

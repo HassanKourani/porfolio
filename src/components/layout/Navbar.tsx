@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useActiveSection } from "../../hooks/useActiveSection";
 import { MenuIcon, XIcon } from "../ui/Icons";
@@ -17,16 +17,20 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
-      if (currentY > lastScrollY && currentY > 100) {
+      if (isNavigating.current) {
+        setHidden(false);
+      } else if (currentY > lastScrollY && currentY > 100) {
         setHidden(true);
         setMobileOpen(false);
       } else {
         setHidden(false);
       }
+      setScrolled(currentY > 20);
       setLastScrollY(currentY);
     };
 
@@ -34,14 +38,26 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  const isNavigating = useRef(false);
+
   const scrollTo = (id: string) => {
     setMobileOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    isNavigating.current = true;
+    // Small delay to let mobile menu close before scrolling
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      // Re-enable hide-on-scroll after navigation completes
+      setTimeout(() => {
+        isNavigating.current = false;
+      }, 800);
+    }, 100);
   };
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-bg-primary/80 border-b border-border-subtle"
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        scrolled ? "bg-bg-primary/90 backdrop-blur-xl border-b border-border-subtle" : "bg-transparent"
+      }`}
       initial={{ y: -100 }}
       animate={{ y: hidden ? -100 : 0 }}
       transition={{ duration: 0.3 }}
@@ -49,7 +65,7 @@ export function Navbar() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <button
           onClick={() => scrollTo("hero")}
-          className="text-lg font-bold text-gradient cursor-pointer"
+          className="font-heading text-lg font-black text-accent cursor-pointer"
         >
           HK
         </button>
@@ -60,18 +76,19 @@ export function Navbar() {
             <li key={item.id}>
               <button
                 onClick={() => scrollTo(item.id)}
-                className={`px-3 py-2 text-sm rounded-lg transition-colors cursor-pointer relative ${
+                className={`px-3 py-2 text-sm font-mono rounded-lg transition-colors cursor-pointer relative ${
                   activeSection === item.id
-                    ? "text-accent-cyan"
-                    : "text-text-secondary hover:text-text-primary"
+                    ? "text-accent"
+                    : "text-text-muted hover:text-text-primary"
                 }`}
               >
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
-                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-accent-cyan rounded-full"
+                    className="absolute bottom-0 left-3 right-3 h-px bg-accent rounded-full"
                     layoutId="activeNav"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    style={{ boxShadow: "0 0 6px rgba(191,255,0,0.4)" }}
                   />
                 )}
               </button>
@@ -104,10 +121,10 @@ export function Navbar() {
                 <li key={item.id}>
                   <button
                     onClick={() => scrollTo(item.id)}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-colors cursor-pointer ${
+                    className={`w-full text-left px-4 py-3 rounded-lg font-mono text-sm transition-colors cursor-pointer ${
                       activeSection === item.id
-                        ? "text-accent-cyan bg-accent-cyan/10"
-                        : "text-text-secondary hover:text-text-primary hover:bg-white/5"
+                        ? "text-accent bg-accent/5"
+                        : "text-text-muted hover:text-text-primary hover:bg-white/3"
                     }`}
                   >
                     {item.label}

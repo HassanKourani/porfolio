@@ -2,30 +2,31 @@ interface StaggeredTextProps {
   text: string;
   className?: string;
   baseDelay?: number;
-  gradient?: boolean;
 }
 
-const gradientStyle: React.CSSProperties = {
-  background: "linear-gradient(135deg, #00d4ff, #7b2ff7)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-};
+export function StaggeredText({ text, className = "", baseDelay = 0.4 }: StaggeredTextProps) {
+  const words = text.split(" ");
 
-export function StaggeredText({ text, className = "", baseDelay = 0.4, gradient }: StaggeredTextProps) {
   return (
     <span className={className} aria-label={text}>
-      {text.split("").map((char, i) => (
-        <span
-          key={i}
-          className="letter-animate"
-          style={{
-            animationDelay: `${baseDelay + i * 0.04}s`,
-            ...(gradient ? gradientStyle : {}),
-          }}
-          aria-hidden="true"
-        >
-          {char === " " ? "\u00A0" : char}
+      {words.map((word, wi) => (
+        <span key={wi} className="inline-block mr-[0.25em]">
+          {word.split("").map((char, ci) => {
+            const globalIndex = words.slice(0, wi).join(" ").length + (wi > 0 ? 1 : 0) + ci;
+            return (
+              <span
+                key={ci}
+                className="letter-animate inline-block"
+                style={{
+                  animationDelay: `${baseDelay + globalIndex * 0.04}s`,
+                  color: "#F0F0F0",
+                }}
+                aria-hidden="true"
+              >
+                {char}
+              </span>
+            );
+          })}
         </span>
       ))}
     </span>

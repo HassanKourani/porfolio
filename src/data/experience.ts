@@ -26,7 +26,7 @@ export const experiences: Experience[] = [
       "Used Jest and RTL to test applications to ensure safe scaling",
     ],
     technologies: ["TypeScript", "React", "NestJS", "Ant Design", "Jest", "RTL", "Golang", "Cypress", "CI/CD"],
-    accentColor: "#00d4ff",
+    accentColor: "#BFFF00",
   },
   {
     company: "SoftMachine",
@@ -43,7 +43,7 @@ export const experiences: Experience[] = [
       "Used Jest, RTL, and Cypress to test applications to ensure safe scaling",
     ],
     technologies: ["TypeScript", "React", "MUI", "Jest", "RTL", "Cypress", "CI/CD"],
-    accentColor: "#7b2ff7",
+    accentColor: "#BFFF00",
   },
   {
     company: "HiTitan",
@@ -59,7 +59,7 @@ export const experiences: Experience[] = [
       "Worked with cross-functional teams to ensure successful project delivery using Jira",
     ],
     technologies: ["TypeScript", "React", "Ant Design", "CI/CD", "GitHub Actions"],
-    accentColor: "#f72fff",
+    accentColor: "#BFFF00",
   },
   {
     company: "Data Solutions & Digital Services",
@@ -76,6 +76,6 @@ export const experiences: Experience[] = [
       "Continuously sought opportunities to enhance technical skills and knowledge in web development",
     ],
     technologies: ["TypeScript", "React", "React Query", "Ant Design", "Jira"],
-    accentColor: "#00d4ff",
+    accentColor: "#BFFF00",
   },
 ];

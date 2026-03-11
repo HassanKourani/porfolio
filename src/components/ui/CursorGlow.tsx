@@ -20,9 +20,10 @@ export function CursorGlow() {
         width: 400,
         height: 400,
         background:
-          "radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%)",
+          "radial-gradient(circle, rgba(191,255,0,0.04) 0%, transparent 70%)",
         opacity: x === 0 && y === 0 ? 0 : 1,
       }}
+      aria-hidden="true"
     />
   );
 }

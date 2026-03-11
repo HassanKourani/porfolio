@@ -35,14 +35,18 @@ export function Experience() {
 
       <div ref={containerRef} className="relative">
         {/* Timeline line */}
-        <div className="absolute left-[7px] md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-border-subtle">
+        <div className="absolute left-[7px] md:left-8 top-0 bottom-0 w-px bg-border-subtle">
           <div
-            className="absolute inset-x-0 top-0 bg-gradient-to-b from-accent-cyan to-accent-purple origin-top transition-transform duration-100"
-            style={{ height: "100%", transform: `scaleY(${progress})` }}
+            className="absolute inset-x-0 top-0 bg-accent origin-top transition-transform duration-100"
+            style={{
+              height: "100%",
+              transform: `scaleY(${progress})`,
+              boxShadow: "0 0 8px rgba(191,255,0,0.3)",
+            }}
           />
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-8">
           {experiences.map((exp, i) => (
             <TimelineItem key={exp.company} experience={exp} index={i} />
           ))}

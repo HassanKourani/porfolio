@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Section } from "../layout/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { ScrollReveal } from "../ui/ScrollReveal";
@@ -35,29 +36,33 @@ export function Contact() {
   return (
     <Section id="contact">
       <SectionHeading
-        title="Let's Work Together"
-        subtitle="Feel free to reach out through any of these channels"
+        title="Contact"
+        subtitle="Let's build something together"
       />
 
-      <div className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+      <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
         {contactLinks.map((link, i) => (
-          <ScrollReveal key={link.label} delay={i * 100}>
-            <a
+          <ScrollReveal key={link.label} delay={i * 80}>
+            <motion.a
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="flex items-center gap-4 p-5 rounded-xl bg-bg-card border border-border-subtle hover:border-accent-cyan/30 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(0,212,255,0.1)] transition-all duration-300 group"
+              className="flex items-center gap-4 p-5 rounded-2xl bg-bg-card border border-border-subtle hover:border-accent/20 transition-all duration-300 group card-glow cursor-pointer"
+              whileHover={{ x: 4 }}
+              transition={{ duration: 0.2 }}
             >
-              <div className="p-3 rounded-lg bg-accent-cyan/10 text-accent-cyan group-hover:bg-accent-cyan/20 transition-colors">
-                <link.icon size={22} />
+              <div className="p-3 rounded-xl bg-accent/5 text-accent/70 group-hover:bg-accent/10 group-hover:text-accent transition-all duration-300">
+                <link.icon size={20} />
               </div>
               <div>
-                <p className="text-text-muted text-sm">{link.label}</p>
+                <p className="text-text-muted text-xs font-mono uppercase tracking-wider mb-0.5">
+                  {link.label}
+                </p>
                 <p className="text-text-primary font-medium text-sm">
                   {link.value}
                 </p>
               </div>
-            </a>
+            </motion.a>
           </ScrollReveal>
         ))}
       </div>

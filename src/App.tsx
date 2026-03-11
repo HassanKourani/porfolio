@@ -1,11 +1,11 @@
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
-import { CursorGlow } from "./components/ui/CursorGlow";
-import { ScrollProgress } from "./components/ui/ScrollProgress";
-import { GradientBlobs } from "./components/ui/GradientBlobs";
 import { GrainOverlay } from "./components/ui/GrainOverlay";
-import { SectionDivider } from "./components/ui/SectionDivider";
+import { ScrollProgress } from "./components/ui/ScrollProgress";
+import { FloatingShapes } from "./components/ui/FloatingShapes";
+import { CursorGlow } from "./components/ui/CursorGlow";
 import { TechMarquee } from "./components/ui/TechMarquee";
+import { SectionDivider } from "./components/ui/SectionDivider";
 import { Hero } from "./components/hero/Hero";
 import { About } from "./components/about/About";
 import { Skills } from "./components/skills/Skills";
@@ -16,7 +16,7 @@ import { Contact } from "./components/contact/Contact";
 export function App() {
   return (
     <>
-      <GradientBlobs />
+      <FloatingShapes />
       <GrainOverlay />
       <CursorGlow />
       <ScrollProgress />
